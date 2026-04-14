@@ -32,6 +32,7 @@ const currentPath = Astro.url.pathname;
           ))}
         </div>
       </div>
+      <a href="/about" class:list={['nav-link', { active: currentPath === '/about' }]}>关于</a>
     </nav>
     <div class="header-actions">
       <button class="search-btn" id="search-btn" aria-label="搜索 (⌘K)">
@@ -56,6 +57,7 @@ const currentPath = Astro.url.pathname;
         {cat.icon} {cat.name}
       </a>
     ))}
+    <a href="/about" class="mobile-menu-link">📖 关于我们</a>
   </div>
 </header>
 
@@ -109,11 +111,11 @@ const currentPath = Astro.url.pathname;
   }
 
   [data-theme="light"] .header {
-    background-color: rgba(250, 250, 245, 0.85);
+    background-color: rgba(250, 250, 247, 0.85);
   }
 
   [data-theme="dark"] .header {
-    background-color: rgba(15, 14, 26, 0.85);
+    background-color: rgba(12, 11, 29, 0.75);
   }
 
   .header-inner {

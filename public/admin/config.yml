@@ -1,6 +1,12 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: cxw745/runaway745
   branch: main
+  base_url: https://gdufe-leap-handbook.vercel.app
+  auth_endpoint: api/auth
+  open_authoring: true
+
+publish_mode: editorial_workflow
 
 media_folder: public/images
 public_folder: /images
