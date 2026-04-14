@@ -1,0 +1,313 @@
+---
+---
+
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">🎓 广财学子自己的飞跃手册</div>
+      <h1 class="hero-title">减少信息差<br />让每一步都更清晰</h1>
+      <p class="hero-desc">
+        由广东财经大学学生自发维护的真实经验分享平台。<br />
+        转专业、保研、考研、出国留学——学长学姐走过的路，就是你的参考。
+      </p>
+      <div class="hero-actions">
+        <a href="/articles" class="btn btn-primary">开始阅读</a>
+        <a href="#categories" class="btn btn-secondary">浏览分类</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">10万+</span>
+          <span class="hero-stat-label">累计阅读</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">50+</span>
+          <span class="hero-stat-label">真实经验</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">6</span>
+          <span class="hero-stat-label">覆盖方向</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual" id="hero-visual">
+      <div class="hero-card hero-card-1 glass-card" data-tilt="">
+        <span class="hero-card-emoji">📚</span>
+        <span class="hero-card-text">考研上岸经验</span>
+      </div>
+      <div class="hero-card hero-card-2 glass-card" data-tilt="">
+        <span class="hero-card-emoji">✈️</span>
+        <span class="hero-card-text">留学申请攻略</span>
+      </div>
+      <div class="hero-card hero-card-3 glass-card" data-tilt="">
+        <span class="hero-card-emoji">🎓</span>
+        <span class="hero-card-text">保研推免指南</span>
+      </div>
+      <div class="hero-card hero-card-4 glass-card" data-tilt="">
+        <span class="hero-card-emoji">🔄</span>
+        <span class="hero-card-text">转专业实录</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var visual = document.getElementById('hero-visual');
+    if (!visual) return;
+    var cards = visual.querySelectorAll('[data-tilt]');
+
+    cards.forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateX = ((y - centerY) / centerY) * -12;
+        var rotateY = ((x - centerX) / centerX) * 12;
+
+        card.style.transform =
+          'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateZ(20px) scale(1.04)';
+        card.style.animationPlayState = 'paused';
+      });
+
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+        card.style.animationPlayState = 'running';
+      });
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 80px 0 64px;
+    overflow: hidden;
+    background-color: var(--bg);
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    opacity: 0.08;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: pulseGlow 8s ease-in-out infinite;
+  }
+
+  [data-theme="dark"] .hero-bg-glow {
+    opacity: 0.12;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 0.08; }
+    50% { transform: scale(1.15); opacity: 0.12; }
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: var(--radius-pill);
+    background-color: var(--accent-light);
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-stat-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 32px;
+    background-color: var(--border);
+  }
+
+  .hero-visual {
+    position: relative;
+    height: 380px;
+    perspective: 1200px;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  [data-theme="dark"] .glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 124, 246, 0.12) 0%,
+      rgba(26, 25, 50, 0.4) 100%
+    );
+    border: 1px solid rgba(139, 124, 246, 0.15);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 0 20px rgba(139, 124, 246, 0.06);
+  }
+
+  .hero-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 28px;
+    border-radius: var(--radius-md);
+    cursor: default;
+    transition: box-shadow 0.3s ease;
+    animation: gentleFloat 5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .hero-card:hover {
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 30px rgba(229, 176, 68, 0.1);
+  }
+
+  [data-theme="dark"] .hero-card:hover {
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 30px rgba(139, 124, 246, 0.2);
+  }
+
+  .hero-card-1 { top: 8%; left: 6%; animation-delay: 0s; }
+  .hero-card-2 { top: 3%; right: 2%; animation-delay: 1.3s; }
+  .hero-card-3 { bottom: 28%; left: 2%; animation-delay: 2.6s; }
+  .hero-card-4 { bottom: 8%; right: 6%; animation-delay: 3.9s; }
+
+  .hero-card-emoji {
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  .hero-card-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-6px) rotate(0.3deg); }
+    66% { transform: translateY(-3px) rotate(-0.2deg); }
+  }
+
+  @media (max-width: 960px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-visual {
+      height: 260px;
+    }
+
+    .hero-card {
+      padding: 14px 20px;
+    }
+
+    .hero-card-emoji {
+      font-size: 22px;
+    }
+
+    .hero-card-text {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 48px 0 40px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+    }
+
+    .hero-stats {
+      gap: 16px;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+  }
+</style>

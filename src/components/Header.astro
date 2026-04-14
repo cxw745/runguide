@@ -1,0 +1,330 @@
+---
+const categories = [
+  { name: '转专业', icon: '🔄' },
+  { name: '保研', icon: '🎓' },
+  { name: '考研', icon: '📚' },
+  { name: '出国留学', icon: '✈️' },
+  { name: '就业', icon: '💼' },
+  { name: '其他', icon: '💡' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">📖</span>
+      <span class="logo-text">广财飞跃手册</span>
+    </a>
+    <nav class="nav">
+      <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>首页</a>
+      <a href="/articles" class:list={['nav-link', { active: currentPath.startsWith('/articles') }]}>文章</a>
+      <div class="nav-categories">
+        <span class="nav-link">分类 ▾</span>
+        <div class="nav-dropdown">
+          {categories.map(cat => (
+            <a href={`/articles?category=${encodeURIComponent(cat.name)}`} class="nav-dropdown-item">
+              <span class="nav-dropdown-icon">{cat.icon}</span>
+              {cat.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <button class="search-btn" id="search-btn" aria-label="搜索 (⌘K)">
+        <span>🔍</span>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+        <span class="theme-icon-light">☀️</span>
+        <span class="theme-icon-dark">🌙</span>
+      </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-menu-link">首页</a>
+    <a href="/articles" class="mobile-menu-link">文章</a>
+    {categories.map(cat => (
+      <a href={`/articles?category=${encodeURIComponent(cat.name)}`} class="mobile-menu-link">
+        {cat.icon} {cat.name}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  function getTheme() {
+    return html.getAttribute('data-theme') || 'light';
+  }
+
+  toggle.addEventListener('click', () => {
+    const next = getTheme() === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  const searchBtn = document.getElementById('search-btn');
+  if (searchBtn) searchBtn.addEventListener('click', () => {
+    if (window.openSearch) window.openSearch();
+  });
+
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuBtn && mobileMenu) {
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    menuBtn.classList.toggle('active');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+        menuBtn.classList.remove('active');
+    });
+  });
+  }
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+
+  [data-theme="light"] .header {
+    background-color: rgba(250, 250, 245, 0.85);
+  }
+
+  [data-theme="dark"] .header {
+    background-color: rgba(15, 14, 26, 0.85);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 24px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo:hover { opacity: 1; }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-link {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+    background-color: var(--accent-light);
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .nav-categories {
+    position: relative;
+  }
+
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    padding: 8px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-hover);
+    z-index: 50;
+  }
+
+  .nav-categories:hover .nav-dropdown {
+    display: block;
+  }
+
+  .nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+  }
+
+  .nav-dropdown-item:hover {
+    color: var(--text-primary);
+    background-color: var(--accent-light);
+    opacity: 1;
+  }
+
+  .nav-dropdown-icon {
+    font-size: 16px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px 6px 10px;
+    font-family: var(--font-stack);
+    font-size: 13px;
+    color: var(--text-muted);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .search-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .search-kbd {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background-color: var(--accent-light);
+    color: var(--accent);
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent);
+  }
+
+  .theme-icon-light { display: inline; }
+  .theme-icon-dark { display: none; }
+
+  [data-theme="dark"] .theme-icon-light { display: none; }
+  [data-theme="dark"] .theme-icon-dark { display: inline; }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 1px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 16px 24px;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+
+  .mobile-menu-link {
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-menu-link:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 720px) {
+    .nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+  }
+</style>

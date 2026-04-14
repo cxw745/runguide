@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: articles
+    label: 文章
+    folder: src/content/articles
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: 标题, widget: string }
+      - { name: author, label: 作者, widget: string }
+      - { name: date, label: 发布日期, widget: datetime }
+      - { name: category, label: 分类, widget: select, options:
+          ["转专业", "保研", "考研", "出国留学", "就业", "其他"] }
+      - { name: tags, label: 标签, widget: list, field: { widget: string } }
+      - { name: excerpt, label: 摘要, widget: text }
+      - { name: body, label: 正文, widget: markdown }

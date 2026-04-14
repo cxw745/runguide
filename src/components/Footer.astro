@@ -1,0 +1,121 @@
+---
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">📖 广财飞跃手册</span>
+        <p class="footer-desc">由广财学子自发维护的真实经验分享平台<br />帮助每一位广财人在关键节点做出更清晰的选择</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 class="footer-col-title">分类</h4>
+          <a href="/articles?category=转专业">转专业</a>
+          <a href="/articles?category=保研">保研</a>
+          <a href="/articles?category=考研">考研</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">更多</h4>
+          <a href="/articles?category=出国留学">出国留学</a>
+          <a href="/articles?category=就业">就业</a>
+          <a href="/articles?category=其他">其他</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">社区</h4>
+          <a href="#">投稿指南</a>
+          <a href="#">关于我们</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024-2026 广财飞跃手册 · 由学生自发维护 · 内容仅代表作者个人观点</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 80px;
+    padding: 48px 0 24px;
+    background-color: var(--bg-alt);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer-brand {
+    max-width: 320px;
+  }
+
+  .footer-logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .footer-desc {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 48px;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-col-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .footer-col a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  .footer-bottom {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .footer-links {
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+  }
+</style>

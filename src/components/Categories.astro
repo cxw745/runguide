@@ -1,0 +1,107 @@
+---
+const categories = [
+  { name: '转专业', icon: '🔄', desc: '跨院系转专业经验、面试准备、学分转换', color: '#4CAF50' },
+  { name: '保研', icon: '🎓', desc: '推免资格、夏令营、材料准备全流程', color: '#2196F3' },
+  { name: '考研', icon: '📚', desc: '院校选择、备考规划、复试调剂经验', color: '#FF5722' },
+  { name: '出国留学', icon: '✈️', desc: '选校定位、语言考试、文书写作、申请时间线', color: '#9C27B0' },
+  { name: '就业', icon: '💼', desc: '校招准备、实习经验、面试技巧、行业选择', color: '#FF9800' },
+  { name: '其他', icon: '💡', desc: '大学生活规划、竞赛经验、考证指南等', color: '#607D8B' },
+];
+---
+
+<section class="categories" id="categories">
+  <div class="container">
+    <h2 class="section-title">选择你的方向</h2>
+    <p class="section-desc">六大核心分类，覆盖广财学子最关心的学业规划方向</p>
+    <div class="categories-grid">
+      {categories.map(cat => (
+        <a href={`/articles?category=${encodeURIComponent(cat.name)}`} class="category-card">
+          <span class="category-icon" style={`background-color: ${cat.color}15; color: ${cat.color}`}>{cat.icon}</span>
+          <div class="category-info">
+            <h3 class="category-name">{cat.name}</h3>
+            <p class="category-desc">{cat.desc}</p>
+          </div>
+          <span class="category-arrow">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .categories {
+    padding: 64px 0;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .category-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+
+  .category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent);
+    opacity: 1;
+  }
+
+  .category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+
+  .category-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .category-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .category-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  .category-arrow {
+    font-size: 18px;
+    color: var(--text-muted);
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .category-card:hover .category-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+
+  @media (max-width: 720px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

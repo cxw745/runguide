@@ -1,0 +1,101 @@
+---
+---
+
+<section class="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-content">
+        <h2 class="cta-title">你的经验，值得被看见</h2>
+        <p class="cta-desc">
+          每一位广财人的经历都是独一无二的。如果你已经走过某段路，<br />
+          你的分享可能正在帮助一个迷茫的学弟学妹做出关键决定。
+        </p>
+        <div class="cta-actions">
+          <a href="#" class="btn btn-primary">📝 投稿分享</a>
+          <a href="/articles" class="btn btn-secondary">阅读文章</a>
+        </div>
+      </div>
+      <div class="cta-visual">
+        <div class="cta-quote">
+          <p class="cta-quote-text">"如果我当初能看到这样的经验帖，至少能少走半年弯路。"</p>
+          <span class="cta-quote-author">—— 一位匿名投稿者</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 64px 0;
+    background-color: var(--bg-alt);
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .cta-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .cta-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-quote {
+    max-width: 360px;
+    padding: 28px;
+    background-color: var(--accent-light);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--accent);
+  }
+
+  .cta-quote-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .cta-quote-author {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .cta-inner {
+      grid-template-columns: 1fr;
+      padding: 32px 24px;
+    }
+
+    .cta-title {
+      font-size: 22px;
+    }
+  }
+</style>
